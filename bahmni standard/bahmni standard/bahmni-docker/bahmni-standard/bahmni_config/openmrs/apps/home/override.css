@@ -1,0 +1,36 @@
+/* Tihut Clinic - Hide all unwanted text */
+
+/* Hide TITLE TEXT completely */
+.title-text,
+.page-title-text,
+.header-title,
+[ng-bind-html="titleText"],
+.landing-page-title {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Hide landing page header text */
+.landing-page-header h1,
+.landing-page-header h2,
+.landing-page-header .header-text {
+    display: none !important;
+}
+
+.landing-page-content h1,
+.landing-page-content h2,
+.landing-page-content p {
+    display: none !important;
+}
+
+/* Keep only logo visible */
+.logo-container img,
+.landing-page-logo img {
+    display: block !important;
+}
+
+/* Hide any element containing "TITLE TEXT" or "BAHMNI" */
+*:contains("TITLE TEXT"),
+*:contains("BAHMNI") {
+    display: none !important;
+}
