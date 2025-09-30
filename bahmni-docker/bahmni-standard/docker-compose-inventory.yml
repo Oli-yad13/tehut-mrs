@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  inventory-db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: inventory
+      POSTGRES_USER: inventory
+      POSTGRES_PASSWORD: inventory123
+    volumes:
+      - inventory_db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - bahmni-standard_default
+
+  inventory-odoo:
+    image: odoo:16.0
+    depends_on:
+      - inventory-db
+    environment:
+      HOST: inventory-db
+      USER: inventory
+      PASSWORD: inventory123
+    ports:
+      - "8069:8069"
+    volumes:
+      - inventory_data:/var/lib/odoo
+      - ./odoo-config:/etc/odoo
+    networks:
+      - bahmni-standard_default
+
+volumes:
+  inventory_db_data:
+  inventory_data:
+
+networks:
+  bahmni-standard_default:
+    external: true
